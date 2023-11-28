@@ -1,14 +1,15 @@
 fn main() {
-    let mut input_string = String::new();
+    let mut input_string: String = String::new();
     std::io::stdin()
         .read_line(&mut input_string)
         .expect("Failed to read line");
-    let trimmed_input = input_string.trim();
+    let trimmed_input: &str = input_string.trim();
 
-    let parsed_number = match trimmed_input.parse::<i32>() {
+    let parsed_number: i32 = match trimmed_input.parse() {
         Ok(n) => n,
-        Err(_) => panic!("{} is not a number", trimmed_input),
+        Err(_) => panic!("{trimmed_input} is not a number"),
     };
 
-    println!("{}", parsed_number * parsed_number);
+    let result: i32 = parsed_number * parsed_number;
+    println!("{result}");
 }

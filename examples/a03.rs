@@ -1,13 +1,12 @@
 fn main() {
-    let input_string: Vec<String> = input_array();
-    let _n: u32 = input_string.get(0).unwrap().parse().unwrap();
-    let k: u32 = input_string.get(1).unwrap().parse().unwrap();
+    let nk = input_array();
+    let k = *nk.get(1).unwrap();
 
-    let p: Vec<u32> = input_array().iter().map(|s| s.parse().unwrap()).collect();
-    let q: Vec<u32> = input_array().iter().map(|s| s.parse().unwrap()).collect();
+    let p = input_array();
+    let q = input_array();
 
-    for i in &p {
-        for j in &q {
+    for i in p.iter() {
+        for j in q.iter() {
             if i + j == k {
                 println!("Yes");
                 return;
@@ -17,11 +16,11 @@ fn main() {
     println!("No");
 }
 
-fn input_array() -> Vec<String> {
-    let mut inputed_number: String = String::new();
-    std::io::stdin().read_line(&mut inputed_number).unwrap();
-    return inputed_number
+fn input_array() -> Vec<u32> {
+    let mut s = String::new();
+    std::io::stdin().read_line(&mut s).unwrap();
+    return s
         .split_whitespace()
-        .map(|s| s.to_string())
+        .map(|tmp| tmp.parse().unwrap())
         .collect();
 }

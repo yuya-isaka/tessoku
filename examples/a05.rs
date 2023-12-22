@@ -1,21 +1,22 @@
 fn main() {
     let mut s = String::new();
     std::io::stdin().read_line(&mut s).unwrap();
-    let nk: Vec<u32> = s
+    let nk = s
         .split_whitespace()
-        .map(|tmp| tmp.parse().unwrap())
-        .collect();
-    let n = *nk.first().unwrap();
-    let k = *nk.get(1).unwrap();
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
+    let n = nk[0];
+    let k = nk[1];
 
-    let mut result = 0;
+    let mut count = 0;
     for i in 1..=n {
         for j in 1..=n {
-            if 1 <= k - i - j && k - i - j <= n {
-                result += 1;
+            let check = k - i - j;
+            if 1 <= check && check <= n {
+                count += 1;
             }
         }
     }
 
-    println!("{result}");
+    println!("{}", count);
 }

@@ -1,26 +1,33 @@
 fn main() {
-    let nk = input_array();
-    let k = *nk.get(1).unwrap();
+    let mut s = String::new();
+    std::io::stdin().read_line(&mut s).unwrap();
+    let nk = s
+        .split_whitespace()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
+    let k = nk[1];
 
-    let p = input_array();
-    let q = input_array();
+    s.clear();
+    std::io::stdin().read_line(&mut s).unwrap();
+    let plist = s
+        .split_whitespace()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
 
-    for i in p.iter() {
-        for j in q.iter() {
-            if i + j == k {
+    s.clear();
+    std::io::stdin().read_line(&mut s).unwrap();
+    let qlist = s
+        .split_whitespace()
+        .map(|x| x.parse::<i32>().unwrap())
+        .collect::<Vec<_>>();
+
+    for p in &plist {
+        for q in &qlist {
+            if p + q == k {
                 println!("Yes");
                 return;
             }
         }
     }
-    println!("No");
-}
-
-fn input_array() -> Vec<u32> {
-    let mut s = String::new();
-    std::io::stdin().read_line(&mut s).unwrap();
-    return s
-        .split_whitespace()
-        .map(|tmp| tmp.parse().unwrap())
-        .collect();
+    println!("No")
 }

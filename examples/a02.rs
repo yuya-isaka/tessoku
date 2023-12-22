@@ -1,19 +1,13 @@
 fn main() {
     let mut s = String::new();
     std::io::stdin().read_line(&mut s).unwrap();
-    let v: Vec<u32> = s
-        .split_whitespace()
-        .map(|tmp| tmp.parse().unwrap())
-        .collect();
-    let k = v.get(1).unwrap();
-    s.clear();
-    std::io::stdin().read_line(&mut s).unwrap();
-    let a: Vec<u32> = s
-        .split_whitespace()
-        .map(|tmp| tmp.parse().unwrap())
-        .collect();
-    for tmp in &a {
-        if tmp == k {
+    let nx = s.split_whitespace().collect::<Vec<_>>();
+    let x = nx[1];
+
+    let mut alist = String::new();
+    std::io::stdin().read_line(&mut alist).unwrap();
+    for a in alist.split_whitespace() {
+        if a == x {
             println!("Yes");
             return;
         }
